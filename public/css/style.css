@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+:root {
+    --primary : #6246ea;
+    --secondary : #eee;
+    --primary-300 : #d1d1e9;
+}
+
+a:focus, button:focus, input:checked {
+    outline: none !important;
+    border: none !important;
+}
+
+body {
+    margin : 0;
+    padding : 0;
+    font-family: 'Noto Sans', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background-color: #fbfbfb;
+}
+
+a {color: var(--primary);}
+a:hover {color : #4933b9;}
+a:focus {color: var(--primary) !important; background-color: transparent !important;}
+
+.text-primary {color: var(--primary) !important;}
+.text-primary-300 {color: var(--primary-300) !important}
+.text-secondary {color:var(--secondary) !important;}
+
+.btn-primary {
+    background-color: var(--primary) !important;
+    border: none !important;
+    /* border-radius: 10pt !important; */
+}
+.btn-secondary {
+    background-color: var(--secondary) !important;
+    border: none !important;
+    color: #000;
+}
+
+.btn {
+    border-radius: 20pt !important;
+}
+
+.bg-primary {background-color: var(--primary) !important;}
+.bg-secondary {background-color: var(--secondary) !important;}
+.bg-primary-300 {background-color: var(--primary-300) !important;}
+.btn-outline-primary {background-color: #fff !important; border: 1px solid var(--primary) !important; color: var(--primary) !important}
+
+.btn-primary:hover {background-color: #4933b9 !important;}
+.btn-secondary:hover {background-color: #d9d8d8 !important; color: #000 !important;}
+.bg-primary-300:hover {background-color: #c4c4e9 !important;}
+.btn-outline-primary:hover {background-color: var(--primary) !important; color: #fff !important;}
+
+.border-primary {border-color: var(--primary) !important}
+
+.btn-circle {border-radius: 50% !important; aspect-ratio: 1/1;}
+
+.border {border:1px solid #eee !important}
+hr {border-top:1px solid #bbb !important}
+
+.tile {
+    background : #fff;
+    border-radius: 15pt !important;
+}
+
+/* Navbar style */
+.navbar {
+    background-color: #fafafa !important;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+}
+
+.nav-link, .navbar-brand, nav .dropdown-item, .dropdown-item:focus {
+    font-weight: 600;
+    color: #000;
+}
+
+.nav-link:hover, .dropdown-item:hover {
+    color: var(--primary) !important;
+}
+
+.active {
+    color: var(--primary) !important;
+    background-color: transparent !important;
+}
+
+@media screen and (max-width:992px) {
+    .offcanvas {
+        --bs-offcanvas-width: 100vw !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        transition: all .3s ease-in-out !important;
+    }
+    .offcanvas.offcanvas-start {
+        height: 75%;
+        transform: translateY(0%) !important;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #steps {
+        display: none !important;
+    }
+
+    .method img {
+        height:40px !important;
+    }
+}
+
+/* General Form style */
+:focus {
+    outline: none !important;
+    border : 1px solid var(--primary) !important;
+    box-shadow: 0 0 0 !important;
+}
+
+/* Login & Sign Up Style */
+/* .form-signin, .form-registration {
+    background-color: #15253f;
+    border-radius: 20pt;
+    box-shadow: 7px 7px 10px #aaa;
+}
+
+.form-signin input, .form-registration input, .form-rent input, .form-rent select {
+    border: none;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #bd9060;
+    background-color: transparent;
+    color: #bd9060 !important;
+}
+
+.form-signin label, .form-registration label, .form-rent label {
+    color: #bd9060 !important;
+}
+
+.form-control:focus {
+    background-color: transparent !important;
+    border-color: #bd9060 !important;
+    box-shadow: 0 0 0 !important;
+    outline: none !important;
+}
+
+/* Rent Form style */
+/* .form-rent {
+    width: 80%; 
+    border-radius: 20pt;
+    background-color: #15253f !important;
+}
+
+.form-rent strong,  .create-rent-form h5 {
+    color: #bd9060;
+}  */
+
+/* Filter Style */
+
+
+.offcanvas {
+    --bs-offcanvas-width: min(100vw, 300px) !important;
+}
+
+.offcanvas-body::-webkit-scrollbar {    
+    display: none !important;
+}
+
+@media screen and (max-width:992px) {
+    .offcanvas {
+        --bs-offcanvas-width: 100vw !important;
+        /* height : 100%; */
+        left: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        transition: all .3s ease-in-out !important;
+    }
+    .offcanvas.offcanvas-start {
+        height: 75%;
+        transform: translateY(0%) !important;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #steps {
+        display: none !important;
+    }
+
+    .method-img {
+        height: 40px !important;
+    }
+}
+
