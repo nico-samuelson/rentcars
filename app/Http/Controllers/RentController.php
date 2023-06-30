@@ -209,12 +209,12 @@ class RentController extends Controller
             $rent_data['driver_email'] = $validatedData['driver_email'];
             $rent_data['driver_identity'] = $validatedData['driver_identity'];
             $rent_data['driver_license'] = $validatedData['driver_license'];
-            $rent_data['rent_number'] = 'RR' . (Rent::get()->count() + 1);
+            $rent_data['rent_number'] = 'RR' . (fake()->randomNumber(8));
             $rent_data['user_id'] = auth()->user()->id;
             $rent_data['admin_id'] = $this->staff->getAdmin()->id;
             $rent_data['total_price'] = $this->vehicleModel->firstWhere('model', $rent_data['vehicle_model'])->daily_rate * 
-            (date_diff($rent_data['end_date'], $rent_data['start_date'])->d + 1);
-            $rent_data['status_id'] = 1 * 1.1;
+                                        $this->dateDiff($rent_data['end_date']->format("U"), $rent_data['start_date']->format("U"));
+            $rent_data['status_id'] = 1;
             
             unset($rent_data['vehicle_model'], $rent_data['vehicle_transmission']);
             
@@ -237,6 +237,7 @@ class RentController extends Controller
             }
             catch(Exception $e) {
                 // Rollback changes
+                dd($e);
                 DB::rollback();
     
                 // Delete uploaded files
@@ -251,14 +252,14 @@ class RentController extends Controller
             // Delete uploaded files
             Storage::delete('/' . $rent_data['driver_identity']);
             Storage::delete('/' . $rent_data['driver_license']);
-            return back()->with('Error', 'Terjadi kesalahan dalam menginput data, silahkan mencoba lagi');
+            return back()->with('Error', 'TEs Terjadi kesalahan dalam menginput data, silahkan mencoba lagi');
         }
     }
 
     public function cancel($id) {
         $rent = Rent::firstWhere('user_id', auth()->user()->id)->where('id', $id)->get()->first();
 
-        if ($rent->count() > 0 && (date_diff(new Datetime($rent->start_date), now())->d >= 1 || $rent->status_id == 1)) {
+        if ($rent->count() > 0 && ($this->dateDiff($rent->start_date, now()) >= 1 || $rent->status_id == 1)) {
             DB::beginTransaction();
             try {
                 // Update Rent Status
@@ -284,10 +285,19 @@ class RentController extends Controller
             }
         }
 
-        else if (date_diff(new Datetime($rent->start_date), now())->d < 1)
+        // else if (date_diff(new Datetime($rent->start_date), now())->d < 1)
+        else if ($this->dateDiff(now()->format("U"), $rent->start_date->format("U")) < 1)
             return back()->with('Error', "Can't cancel rent that will start in less than a day!");
 
         abort(403);
+    }
+
+    function dateDiff($d1, $d2) {
+        // dd($d1 . ' ' . $d2);
+        $delta = $d1 - $d2;
+        // dd($delta / 86400);
+        // dd(floor($delta / 86400));
+        return floor($delta / 86400);
     }
 
     /**

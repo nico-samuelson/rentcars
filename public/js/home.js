@@ -18,13 +18,23 @@ $(document).ready(function() {
         }
     });
 
+    $(".prev, .next").on("mouseenter", function() {
+        $(this).find('img').css('filter', 'brightness(0%)')
+    })
+
+    $(".prev, .next").on("mouseleave", function() {
+        $(this).find('img').css('filter', 'brightness(100%)')
+    })
+
     $(document.body).on("change", ".fleetFilter", function() {
         const id = $(this).val()
         $('input[name="vehicle_type"]').next().removeClass('btn-primary');
+        $('input[name="vehicle_type"]').next().addClass('text-muted');
         $('input[name="vehicle_type"]').next().removeClass('text-light');
 
         if ($(this).is(':checked')) {
             $(this).next().addClass('btn-primary');
+            $(this).next().removeClass('text-muted');
             $(this).next().addClass('text-light');
         }
 
@@ -34,18 +44,18 @@ $(document).ready(function() {
             cache : true,
             success : function(response) {
                 $(".cars").empty();
-
                 let view = '';
+
                 $.each(response, function(i) {  
                     view += `<div class="col-md-4 col-sm-6 col-11 m-0 p-3 car">
-                        <figure class="figure bg-secondary p-4 rounded d-flex justify-content-center align-items-center w-100">
+                        <figure class="figure bg-dark p-4 rounded d-flex justify-content-center align-items-center">
                             <img src="` + response[i].vehicle_image + `" class="figure-img img-fluid rounded d-flex justify-content-center align-items-center" alt="` + response[i].brand + ' ' + response[i].model + `">
                         </figure>
-                        <p class="fw-semibold mt-1">` + response[i].brand + ' ' + response[i].model + `</p>
-                        <span class="badge text-dark d-flex align-items-center justify-content-start">
-                            <img src="/storage/website-assets/group.png" alt="" height="25px">
+                        <p class="text-light mt-1 mb-0">` + response[i].brand + ' ' + response[i].model + `</p>
+                        <span class="badge text-light fw-normal d-flex align-items-center justify-content-start">
+                            <img src="/storage/website-assets/person.png" alt="" height="25px">
                             <span class="ps-2 fs-6">` + response[i].capacity + `</span>
-                            <img src="/storage/website-assets/baggage.png" alt="" height="25px" class="ps-3">
+                            <img src="/storage/website-assets/Baggage.png" alt="" height="25px" class="ps-3">
                         <span class="ps-2 fs-6">` + response[i].trunk + `</span>
                         </span>
                     </div>`

@@ -7,7 +7,7 @@
         <div class="row mx-0 py-3">
 
             <div class="col-md-6 my-md-4 ps-md-0">
-                <form action="/payment/store/{{ $rent->rent_number }}" method="POST" enctype="multipart/form-data" class="col p-4 tile border">
+                <form action="/payment/store/{{ $rent->rent_number }}" method="POST" enctype="multipart/form-data" class="col p-5 tile border">
                     @csrf
                     <div class="row">
                         <h6 class="fw-semibold">Payment Detail</h6>
@@ -69,7 +69,9 @@
                     <div class="hstack mt-3">
                         <div class='w-50'>Daily Rate</div>
                         <div class="w-50 text-end fw-semibold">
-                            Rp {{ number_format($rent->total_price / date_diff(new Datetime($rent->end_date), new Datetime($rent->start_date))->d, 0, ',', '.') }}
+                            {{-- {{ dd(strtotime($rent->end_date) - strtotime($rent->start_date)) }} --}}
+                            Rp {{ number_format($rent->total_price / 
+                                ((strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400), 0, ',', '.') }}
                         </div>
                     </div>
 
@@ -77,9 +79,9 @@
                         <div class='w-50'>Duration</div>
                         <div class="w-50 text-end fw-semibold">
                             {{ 
-                                date_diff(new Datetime($rent->end_date), new Datetime($rent->start_date))->d == 1 ?
-                                date_diff(new Datetime($rent->end_date), new Datetime($rent->start_date))->d . ' day' :
-                                date_diff(new Datetime($rent->end_date), new Datetime($rent->start_date))->d . ' days'
+                                (strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400 == 1 ?
+                                (strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400 . ' day' :
+                                (strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400 . ' days'
                             }} 
                         </div>
                     </div>

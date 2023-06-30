@@ -126,7 +126,7 @@
 
                         <div class="col-12 mb-3">
                             <label for="driver_identity" class="form-label fw-semibold mb-2">National Identity / Passport</label>
-                            <input type="file" class="form-control @error('driver_identity') is-invalid @enderror" id="driver_identity" name='driver_identity' value="{{ old('driver_identity') }}">
+                            <input type="file" class="form-control @error('driver_identity') is-invalid @enderror" id="driver_identity" name='driver_identity' value="{{ old('driver_identity') }}" accept="image/*">
                             <span class="form-text">only accepts .jpg, .png, or .jpeg file up to 2MB</span>
 
                             @error('driver_identity')
@@ -138,7 +138,7 @@
 
                         <div class="col-12 mb-3">
                             <label for="driver_license" class="form-label fw-semibold mb-2">Driving License</label>
-                            <input type="file" class="form-control @error('driver_license') is-invalid @enderror" id="driver_license" name='driver_license' value="{{ old('driver_license') }}">
+                            <input type="file" class="form-control @error('driver_license') is-invalid @enderror" id="driver_license" name='driver_license' value="{{ old('driver_license') }}" accept="image/*">
                             <span class="form-text">only accepts .jpg, .png, or .jpeg file up to 2MB</span>
 
                             @error('driver_license')

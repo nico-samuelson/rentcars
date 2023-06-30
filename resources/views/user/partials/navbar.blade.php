@@ -1,24 +1,24 @@
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-dark navbar-expand-lg sticky-top">
     <div class="container">
         <a class="navbar-brand" href="/">Rentcars<span class='text-primary'>.id</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item me-3">
-                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link {{ Request::is('about/*') ? 'active' : '' }}" href="/about">About Us</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link {{ Request::is('rent/*') ? 'active' : '' }}" href="/rent/schedule">Rent</a>
-                </li>
-                <li class="nav-item me-3">
-                    <a class="nav-link {{ Request::is('help/*') ? 'active' : '' }}" href="/help">Help</a>
-                </li>
 
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item me-5">
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">HOME</a>
+                </li>
+                <li class="nav-item me-5">
+                    <a class="nav-link {{ Request::is('about/*') ? 'active' : '' }}" href="/about">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('rent/*') ? 'active' : '' }}" href="/rent/schedule">RENT</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 @auth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ Request::is('user/*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,9 +38,12 @@
                 
                 @else
                     <li class="nav-item my-2 my-lg-0">
-                        <a class="text-light btn btn-primary px-4 fw-semibold {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a>
+                        <a class="text-light btn btn-primary px-4 {{ Request::is('login') ? 'active' : '' }}" href="/login">SIGN IN</a>
                     </li>
                 @endauth
+            </ul>
+
+                
             </ul>
         </div>
     </div>

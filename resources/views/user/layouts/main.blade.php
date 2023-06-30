@@ -30,6 +30,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     {{-- Custom Style --}}
     <link rel='stylesheet' href='/css/style.css'>
+
+    @yield('style')
 </head>
 <body>
     @include('user.partials.navbar')
@@ -37,5 +39,7 @@
     <div class="container-fluid p-0 m-0">
         @yield('container')
     </div>
+
+    @yield('script')
 </body>
 </html>

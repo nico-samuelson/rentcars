@@ -75,9 +75,9 @@
 
 <div class="col mt-5 bg-secondary tile py-3 form-step-container">
     <ul id="form-step">
-        <li class="active">Schedule</li>
-        <li class="{{ (Request::is('rent/*') && !Request::is('rent/schedule')) ? 'active' : ""}}"  style="cursor:pointer !important">Choose Vehicle</li>
-        <li class="{{ (Request::is('rent/form') || Request::is('rent/payment')) ? 'active' : ""}}">Fill Detail</li>
-        <li class="{{ Request::is('rent/payment/*') ? 'active' : ""}}">Pay</li>
+        <li class="{{ Request::is('rent/*') || Request::is('payment/create/*') ? 'active' : '' }}">Schedule</li>
+        <li class="{{ !Request::is('rent/schedule') ? 'active' : ""}}">Choose Vehicle</li>
+        <li class="{{ Request::is('rent/form') || Request::is('payment/create/*') ? 'active' : ''}}">Fill Detail</li>
+        <li class="{{ Request::is('payment/create/*') ? 'active' : ""}}">Pay</li>
     </ul>
 </div>

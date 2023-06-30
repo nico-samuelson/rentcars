@@ -57,8 +57,8 @@ class Rent extends Model
     public function thisWeekRevenue($employee) {
         if ($employee->access_lvl >= 1 && $employee->access_lvl <= 5) {
             $result = array();
-            $thisWeek = $this->whereBetween('created_at', [now()->startOfWeek(), now()]);
-            $lastWeek = $this->whereBetween('created_at', [now()->subWeek()->startOfWeek(), now()->subWeek()->endOfWeek()]);
+            $thisWeek = $this->whereBetween('start_date', [now()->startOfWeek(), now()]);
+            $lastWeek = $this->whereBetween('start_date', [now()->subWeek()->startOfWeek(), now()->subWeek()->endOfWeek()]);
 
             // For BOD, BOC, and Shareholders
             if ($employee->access_lvl < 5) {
@@ -116,15 +116,16 @@ class Rent extends Model
             $data = $data->groupBy("time")->orderBy('time', 'desc')->limit(5)->get();
     
             foreach($data as $d) {
-                $labels[] = date_format(date_create_from_format('Y-m', $d->time), 'M Y');
+                $labels[] = $d->time;
+                // $labels[] = date_format(date_create_from_format('Y-m', $d->time), 'M Y');
                 $revenue[] = $d->revenue;
             }
 
             $labels = array_reverse($labels);
             $revenue = array_reverse($revenue);
+            // dd(array('labels' => $labels, 'quantity' => $revenue));
             return array('labels' => $labels, 'quantity' => $revenue);
         }
-
         return array('labels' => array(), 'quantity' => array());
     }
 
@@ -142,7 +143,8 @@ class Rent extends Model
             $data = $data->groupBy("time")->orderBy('time', 'desc')->limit(5)->get();
     
             foreach($data as $d) {
-                $labels[] = date_format(date_create_from_format('Y-m', $d->time), 'M Y');
+                $labels[] = $d->time;
+                // $labels[] = date_format(date_create_from_format('Y-m', $d->time), 'M Y');
                 $count[] = $d->count;
             }
 

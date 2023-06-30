@@ -185,7 +185,7 @@
                     <h5 class="font-weight-bolder mb-0">
                       {{ number_format($data['week_revenue'][0], 0, ',', '.') }}
                       <br>
-                      <span class="{{ $data['week_revenue'][1] > 0 ? 'text-success' : 'text-danger' }} text-sm font-weight-bolder">{{ $data['week_revenue'][1] }}%</span>
+                      <span class="{{ $data['week_revenue'][1] > 0 ? 'text-success' : 'text-danger' }} text-sm font-weight-bolder">{{ number_format($data['week_revenue'][1], 0, ',', '.') }}%</span>
                     </h5>
                   </div>
                 </div>
@@ -209,7 +209,7 @@
                     <h5 class="font-weight-bolder mb-0">
                       {{ number_format($data['num_of_rents'][0], 0, ',', '.') }}
                       <br>
-                      <span class="{{ $data['num_of_rents'][1] > 0 ? 'text-success' : 'text-danger' }} text-sm font-weight-bolder">{{ $data['num_of_rents'][1] }}%</span>
+                      <span class="{{ $data['num_of_rents'][1] > 0 ? 'text-success' : 'text-danger' }} text-sm font-weight-bolder">{{ number_format($data['num_of_rents'][1], 0, ',', '.') }}%</span>
                     </h5>
                   </div>
                 </div>
@@ -234,7 +234,7 @@
                       {{ number_format($data['available_vehicle'][0], 0, ',', '.') }} / 
                       {{ number_format($data['available_vehicle'][1], 0, ',', '.') }}
                       <br>
-                      <span class="{{ $data['available_vehicle'][0] / $data['available_vehicle'][1] > 0 ? 'text-success' : 'text-danger' }} text-sm font-weight-bolder">{{ $data['new_users'][1] }}%</span>
+                      <span class="{{ $data['available_vehicle'][0] / $data['available_vehicle'][1] * 100 > 50 ? 'text-success' : 'text-danger' }} text-sm font-weight-bolder">{{ number_format($data['available_vehicle'][0] / $data['available_vehicle'][1] * 100, '0', ',', '.') }}%</span>
                       <br>
                     </h5>
                   </div>
@@ -319,6 +319,7 @@
         </div>
       </div> --}}
 
+      <h4 class="font-weight-bolder my-3">Monthly Data</h4>
       {{-- Charts --}}
       <div class="row mt-4">
         {{-- Chart 1 --}}
@@ -877,7 +878,7 @@
       data: {
         labels: [],
         datasets: [{
-          label: "Revenue",
+          label: "Rents",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
@@ -937,9 +938,9 @@
 
     var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
 
-    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+    gradientStroke1.addColorStop(1, 'rgba(98, 70, 234, .25)');
+    gradientStroke1.addColorStop(0.2, 'rgba(98, 70, 234, 0)');
+    gradientStroke1.addColorStop(0, 'rgba(98, 70, 234, 0)'); //purple colors
 
     var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
 
@@ -956,7 +957,7 @@
             tension: 0.4,
             borderWidth: 0,
             pointRadius: 0,
-            borderColor: "#cb0c9f",
+            borderColor: "#6246ea",
             borderWidth: 3,
             backgroundColor: gradientStroke1,
             fill: true,
