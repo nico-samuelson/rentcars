@@ -22,14 +22,14 @@
         @endif
 
         <div class="row tile mx-1">
-            <div class="col-lg-7 p-5 tile bg-dark">
+            <div class="col-lg-6 p-5 tile bg-dark">
                 <h3 class="fw-semibold">{{ $car->brand . ' ' . $car->model }}</h3>
                 <h6 class="text-primary mt-3 fw-bold fs-4">Rp {{ number_format($car->daily_rate, 0, ',', '.') }}/day</h6>
 
                 <img src="{{ $car->vehicle_image }}" alt="{{ $car->model }}" class="w-100 img-fluid mt-4">
             </div>
 
-            <form action="/rent/set-vehicle/{{ $car->model }}" method="POST" id="cekmobil" class="col-lg-5 py-4 px-1">
+            <form action="/rent/set-vehicle/{{ $car->model }}" method="POST" id="cekmobil" class="col-lg-6 py-4 px-1">
                 @csrf
                 {{-- <div class="col-lg-5 py-4 px-1"> --}}
                     <div class="accordion accordion-flush" id="accordionFlushExample">

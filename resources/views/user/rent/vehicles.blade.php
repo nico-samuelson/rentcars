@@ -13,16 +13,6 @@
         background-color: var(--primary);
     }
 
-    .accordion, .accordion-item, .accordion-flush, .accordion-button, .accordion-button:not(.collapsed) {
-        border: none;
-        background-color: transparent !important;
-        color: #aaa !important;
-    }
-
-    .accordion-button:not(.collapsed) {
-        border-bottom: 1px solid #aaa !important;
-    }
-
     .input-group-text {
         background-color: transparent !important;
         border: 2px solid #88888850 !important;

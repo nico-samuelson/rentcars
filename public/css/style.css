@@ -130,7 +130,22 @@ hr {border-top:1px solid #bbb !important}
     }
 }
 
-/* General Form style */
+/* Accordions */
+.accordion, .accordion-item, .accordion-flush, .accordion-button {
+    border: none;
+    background-color: transparent !important;
+    color: #aaa !important;
+}
+
+.accordion .collapsed {
+    border-bottom: 1px solid #88888850 !important;
+}
+
+.accordion-button:not(.collapsed) {
+    border-bottom: 1px solid #88888850 !important;
+}
+
+/* General Forms */
 .form-control, .form-check-input, .form-select {
     background-color: transparent !important;
     border: 2px solid #88888850 !important;
