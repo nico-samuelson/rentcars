@@ -21,7 +21,6 @@
 
         <style>
             body {
-                background-color:#fff !important;
                 margin: 0;
                 padding: 0; 
             }
@@ -72,23 +71,25 @@
                 right: 15px;
                 top: 43px;
             }
+
+            .social-text {
+                color: #aaa !important;
+            }
         </style>
     </head>
     <body>
         <div class="container-fluid p-0 m-0">
-            <div class="row vh-100 p-0 m-0">
-                <div class="col-lg-6 pc-login d-flex justify-content-center align-items-center p-5 position-fixed">
+            <div class="row p-0 m-0">
+                <div class="col-lg-5 pc-login d-flex justify-content-center align-items-center p-5">
                     <img src="/storage/website-assets/login-illustration.png" alt="Car Rent Illustration" class="img-fluid p-5">
                 </div>
 
-                <div class="col-lg-6"></div>
-
-                <div class="col-lg-6 d-flex justify-content-center align-items-center p-5">
+                <div class="col-lg-7 d-flex justify-content-center align-items-center p-5 bg-dark">
                     <form action="/login" method="POST" class="login-form">
                         @csrf
 
                         <div class="login-header">
-                            <h2 class="fw-bold text-primary">Welcome Back!👋</h2>
+                            <h2 class="fw-bold text-primary">Welcome Back 👋</h2>
                             <p class="text-muted mb-lg-4">Please sign in to continue</p>
                         </div>
                         
@@ -120,54 +121,45 @@
                         @endif
 
                         {{-- Login Form --}}
-                        <div class="mb-3">
-                            <label for="email" class="form-label fw-semibold">Email address</label>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Email address</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                         </div>
-                        <div class="mb-3 position-relative">
-                            <label for="password" class="form-label fw-semibold">Password</label>
+                        <div class="mb-4 position-relative">
+                            <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" value="{{ old('password') }}" required>
                             <i class="fa-solid fa-eye position-absolute" id="showPass"></i>
                             <i class="fa-solid fa-eye-slash position-absolute" id="hidePass"></i>
                         </div>
                         
-                        <div class="hstack mb-3">
+                        <div class="hstack mb-4">
                             <div class="form-check w-50">
                                 <input class="form-check-input" type="checkbox" value="1" id="remember_me" name="remember_me">
-                                <label class="form-check-label fw-semibold" for="remember_me">Remember Me</label>
+                                <label class="form-check-label" for="remember_me">Remember Me</label>
                             </div>
                             <div class="w-50 text-end">
-                                <a href="{{ route('password.request') }}" class="text-decoration-none fw-semibold">Forgot Password</a>
+                                <a href="{{ route('password.request') }}" class="text-decoration-none">Forgot Password</a>
                             </div>
                         </div>
 
                         {{-- Login Button --}}
-                        <button class="btn btn-primary fw-semibold w-100 py-2 mb-4">Login</button>
+                        <button class="btn btn-primary w-100 py-2 mb-4">Login</button>
 
                         {{-- Social Login --}}
                         <div class="mb-4 social-text">
-                            Or Login With
+                            Or
                         </div>
-
-                        <div class="hstack gap-3 mb-4">
-                            <div class="w-50 position-relative">
-                                <a href="">
-                                    <button class="btn border w-100 py-2 fw-semibold">
-                                        <img src="/storage/website-assets/google.png" height="20px" class="py-0 pe-2">Google
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="w-50">
-                                <a href="">
-                                    <button class="btn border w-100 py-2 fw-semibold">
-                                        <img src="/storage/website-assets/facebook.png" height="20px" class="py-0 pe-2">Facebook
-                                    </button>
-                                </a>
-                            </div>
+                        
+                        <div class="mb-4">
+                            <a href="">
+                                <button class="btn border w-100 py-2" style="color:#aaa">
+                                    <img src="/storage/website-assets/google.png" height="20px" class="py-0 pe-3">Sign in with Google
+                                </button>
+                            </a>
                         </div>
 
                         {{-- Redirect to sign up page --}}
-                        <p class="text-center text-muted">Don't have an account? <a href="/register" class="text-decoration-none">Register here</a></p>
+                        <p class="text-center text-muted mb-0">Don't have an account? <a href="/register" class="text-decoration-none">Register here</a></p>
                     </form>
                 </div>
             </div>

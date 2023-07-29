@@ -426,8 +426,8 @@ class VehicleModelSeeder extends Seeder
             ),
         );
 
-        foreach($models as $model) {
-            $model['vehicle_image'] = '/storage/vehicle-image/' . $model['model'] . '.png';
+        foreach ($models as $model) {
+            $model['vehicle_image'] = '/vehicle-image/' . $model['model'] . '.png';
             VehicleModel::create($model);
         }
     }

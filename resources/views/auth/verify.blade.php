@@ -20,13 +20,13 @@
     <link rel='stylesheet' href='/css/style.css'>
 </head>
 <body>
-    @include('partials.navbar')
+    @include('user.partials.navbar')
 
     <div class="container-fluid p-0 m-0">
         <div class="container d-flex justify-content-center align-items-center vh-100">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card">
+                    <div class="card bg-dark">
                         <div class="card-header">{{ __('Verify Your Email Address') }}</div>
         
                         <div class="card-body">

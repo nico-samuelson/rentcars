@@ -36,7 +36,7 @@ Route::match(['get', 'post'], '/reachout', [CustomerTicketController::class, 'st
 Route::prefix('rent')->middleware(['auth', 'verified'])->group(function () {
     Route::redirect('/', url()->previous());
     Route::get('/schedule', [RentController::class, 'chooseSchedule'])->name('rent-schedule');
-    Route::post('/set-schedule', [RentController::class, 'setSchedule']);
+    Route::post('/set-schedule', [RentController::class, 'setSchedule'])->name('set-schedule');
     Route::get('/vehicles', [RentController::class, 'chooseVehicle'])->name('rent-vehicle');
     Route::get('/vehicles/{model}', [RentController::class, 'viewVehicle']);
     Route::post('/set-vehicle/{model}', [RentController::class, 'setVehicleModel']);

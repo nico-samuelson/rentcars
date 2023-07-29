@@ -22,9 +22,9 @@
         @endif
 
         <div class="row tile mx-1">
-            <div class="col-lg-7 p-5 tile bg-secondary">
+            <div class="col-lg-7 p-5 tile bg-dark">
                 <h3 class="fw-semibold">{{ $car->brand . ' ' . $car->model }}</h3>
-                <h6 class="text-muted mt-3">Rp <span class="text-primary fw-bold fs-4">{{ number_format($car->daily_rate, 0, ',', '.') }}</span>/day</h6>
+                <h6 class="text-primary mt-3 fw-bold fs-4">Rp {{ number_format($car->daily_rate, 0, ',', '.') }}/day</h6>
 
                 <img src="{{ $car->vehicle_image }}" alt="{{ $car->model }}" class="w-100 img-fluid mt-4">
             </div>

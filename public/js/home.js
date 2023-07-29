@@ -53,7 +53,7 @@ $(document).ready(function() {
                         </figure>
                         <p class="text-light mt-1 mb-0">` + response[i].brand + ' ' + response[i].model + `</p>
                         <span class="badge text-light fw-normal d-flex align-items-center justify-content-start">
-                            <img src="/storage/website-assets/person.png" alt="" height="25px">
+                            <img src="/storage/website-assets/people.png" alt="" height="25px">
                             <span class="ps-2 fs-6">` + response[i].capacity + `</span>
                             <img src="/storage/website-assets/Baggage.png" alt="" height="25px" class="ps-3">
                         <span class="ps-2 fs-6">` + response[i].trunk + `</span>

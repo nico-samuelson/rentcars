@@ -21,9 +21,9 @@
                     @enderror
 
                     <label for="email" class="form-label fw-semibold">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" value='{{ old('email') }}' required autofocus>
+                    <input type="email" class="form-control" id="email" name="email" value='{{ old('email') }}' required>
 
-                    <button class="btn btn-primary py-2 w-100 mt-5 fw-semibold">Get Password Reset Link</button>
+                    <button class="btn btn-primary py-2 w-100 mt-5">Get Password Reset Link</button>
                 </form>
             </div>
         </div>

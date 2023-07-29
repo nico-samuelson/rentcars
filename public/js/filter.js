@@ -59,22 +59,22 @@ $(document).ready(function() {
                     let element = ''
     
                     $.each(response, function(i) {
-                        element += `<div class="col-12 tile border mt-3">
-                            <div class="row p-3">
-                                <div class="col-md-6 px-3 d-flex justify-content-center">
+                        element += `<div class="col-12 tile mt-3">
+                            <div class="row p-3 h-100">
+                                <div class="col-md-6 px-3 d-flex justify-content-center align-items-center">
                                     <img src="` + response[i].vehicle_image + `" alt="` + response[i].model + `" class="w-100 img-fluid car-img">
                                 </div>
             
                                 <div class="col-md-6 d-flex flex-column justify-content-center">
-                                    <h6 class="fw-semibold">` + response[i].brand + ' ' + response[i].model + `</h6>
+                                    <h6>` + response[i].brand + ' ' + response[i].model + `</h6>
                                     <h4 class="fw-semibold text-primary">
                                         Rp` + response[i].daily_rate.toLocaleString("de-DE") + `/day</span>
                                     </h4>
-                                    <span class="badge text-dark d-flex align-items-center justify-content-start">
-                                        <img src="/storage/website-assets/group.png" alt="" height="25px">
-                                        <span class="ps-2 fs-6">` + ' ' + response[i].capacity + `</span>
-                                        <img src="/storage/website-assets/baggage.png" alt="" height="25px" class="ps-3">
-                                        <span class="ps-2 fs-6">` + ' ' + response[i].trunk + `</span>
+                                    <span class="badge fw-normal d-flex align-items-center justify-content-start">
+                                        <img src="/website-assets/people.png" alt="" height="25px">
+                                        <span class="ps-2 fs-6"> ` + response[i].capacity + `</span>
+                                        <img src="/website-assets/baggage.png" alt="" height="25px" class="ps-3">
+                                        <span class="ps-2 fs-6">` + response[i].trunk + `</span>
                                     </span>
 
                                     <a href="/rent/vehicles/` + response[i].model + `"><button class="btn btn-primary w-50 mt-3">Select</button></a>

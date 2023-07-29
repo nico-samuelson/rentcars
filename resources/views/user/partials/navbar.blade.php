@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-lg sticky-top">
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">Rentcars<span class='text-primary'>.id</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

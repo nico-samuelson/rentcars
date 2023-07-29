@@ -64,28 +64,32 @@
                     text-align: center !important;
                 }
             }
+
+            .social-text {
+                color: #aaa !important;
+            }
         </style>
     </head>
     <body>
         <div class="container-fluid p-0 m-0">
             <div class="row w-100 vh-100 p-0 m-0">
-                <div class="col-md-6 pc-register d-flex justify-content-center align-items-center position-fixed vh-100">
+                <div class="col-md-5 pc-register d-flex justify-content-center align-items-center position-fixed vh-100">
                     <img src="/storage/website-assets/login-illustration.png" alt="Car Rent Illustration" width="450px">
                 </div>
 
-                <div class="col-md-6"></div>
+                <div class="col-md-5"></div>
 
-                <div class="col-md-6 d-flex justify-content-center align-items-center p-5">
+                <div class="col-md-7 bg-dark d-flex justify-content-center align-items-center p-5">
                     <form action="/register" method="POST" class="register-form">
                         @csrf
                         <div class="register-header">
-                            <h2 class="fw-bold d-block">Let's Get Started!</h2>
+                            <h2 class="text-primary fw-bold d-block">Let's Get Started!</h2>
                             <p class="text-muted mb-md-5">Create your account to start renting</p>
                         </div>
                         
                         {{-- Register Form --}}
-                        <div class="mb-3">
-                            <label for="name" class="form-label fw-semibold">Full Name</label>
+                        <div class="mb-4">
+                            <label for="name" class="form-label">Full Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
 
                             @error('name')
@@ -95,8 +99,8 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="birth_date" class="form-label fw-semibold">Birth Date</label>
+                        <div class="mb-4">
+                            <label for="birth_date" class="form-label">Birth Date</label>
                             <input type="date" class="form-control @error('birth_date') is-invalid @enderror" id="birth_date" name="birth_date" value="{{ old('birth_date') }}" required>
 
                             @error('birth_date')
@@ -106,8 +110,8 @@
                             @enderror
                         </div>  
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label fw-semibold">Email address</label>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Email address</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
 
                             @error('email')
@@ -117,8 +121,8 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="password" class="form-label fw-semibold">Password</label>
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
 
                             @error('password')
@@ -129,7 +133,7 @@
                         </div>
 
                         <div class="mb-5">
-                            <label for="password_confirm" class="form-label fw-semibold">Retype Password</label>
+                            <label for="password_confirm" class="form-label">Retype Password</label>
                             <input type="password" class="form-control @error('password_confirm') is-invalid @enderror" id="password_confirm" name="password_confirm" required>
 
                             @error('password_confirm')
@@ -140,28 +144,19 @@
                         </div>
 
                         {{-- Sign Up Button --}}
-                        <button class="btn btn-primary fw-semibold w-100 py-2 mb-4">Sign Up</button>
+                        <button class="btn btn-primary w-100 py-2 mb-4">Sign Up</button>
 
                         {{-- Social Sign Up --}}
                         <div class="mb-4 social-text">
-                            Or Sign Up With
+                            Or
                         </div>
 
-                        <div class="hstack gap-3 mb-4">
-                            <div class="w-50 position-relative">
-                                <a href="">
-                                    <button class="btn border w-100 py-2 fw-semibold">
-                                        <img src="/storage/website-assets/google.png" height="20px" class="py-0 pe-2">Google
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="w-50">
-                                <a href="">
-                                    <button class="btn border w-100 py-2 fw-semibold">
-                                        <img src="/storage/website-assets/facebook.png" height="20px" class="py-0 pe-2">Facebook
-                                    </button>
-                                </a>
-                            </div>
+                        <div class="mb-4">
+                            <a href="">
+                                <button class="btn border w-100 py-2" style="color:#fff">
+                                    <img src="/storage/website-assets/google.png" height="20px" class="py-0 pe-3">Sign up with Google
+                                </button>
+                            </a>
                         </div>
 
                         {{-- Redirect to sign up page --}}

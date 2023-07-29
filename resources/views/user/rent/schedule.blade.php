@@ -92,13 +92,13 @@ table {
         {{-- Steps --}}
         @include('user.partials.form-step')
 
-        <div class="row mt-4">
-            <div class="col-md-6 p-5 pt-0">
-                <img src="/storage/website-assets/pick-date.png" alt="Schedule" class="w-100 img-fluid">
+        <div class="row mt-5">
+            <div class="col-lg-6 px-5 d-flex justify-content-center">
+                <img src="/website-assets/pick-date.png" alt="Schedule" class="img-fluid px-5">
             </div>
     
-            <div class="col-md-6">
-                <form action="/rent/set-schedule" method="post" class="p-5 tile border">
+            <div class="col-lg-6">
+                <form action="{{ route('set-schedule') }}" method="post" class="p-5 tile">
                     @csrf
                     <label for="location" class="form-label fw-semibold">Location</label>
                     <select class="form-select mb-4 @error('location') is-invalid @enderror" aria-label="Default select example" id='location' name="location" value="{{ session()->get('rent_data')['location'] ?? old('location') }}">
@@ -136,7 +136,7 @@ table {
                         </div>
                     </div>
 
-                    <button class="btn btn-primary w-100 fw-semibold py-2">Browse Vehicle</button>
+                    <button class="btn btn-primary w-100 py-2">Browse Vehicle</button>
                 </form>
             </div>
         </div>

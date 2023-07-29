@@ -21,9 +21,16 @@ body {
     color: #fff;
 }
 
-a {color: var(--primary);}
-header, main, footer, article, section {background-color: var(--body-bg) !important;}
-/* a:hover {color : #4933b9;} */
+a {
+    color: var(--primary);
+}
+
+a:hover {
+    color: #4933b9;
+}
+header, main, footer, article, section {
+    background-color: var(--body-bg) !important;
+}
 /* a:focus {color: var(--primary) !important; background-color: transparent !important;} */
 
 .text-light {color: #fff !important;}
@@ -62,15 +69,14 @@ header, main, footer, article, section {background-color: var(--body-bg) !import
 
 .btn-circle {border-radius: 50% !important; aspect-ratio: 1/1;}
 
-.border {border:1px solid #eee !important}
+/* .border {border:1px solid #eee !important} */
+.border {border: 2px solid #888;}
 hr {border-top:1px solid #bbb !important}
 
 .tile {
     background : #111;
     border-radius: 15pt !important;
 }
-
-
 
 /* Navbar style */
 .navbar {
@@ -125,48 +131,33 @@ hr {border-top:1px solid #bbb !important}
 }
 
 /* General Form style */
+.form-control, .form-check-input, .form-select {
+    background-color: transparent !important;
+    border: 2px solid #88888850 !important;
+    color: #aaa !important;
+}
+
+.form-select option {
+    color: #000 !important;
+}
+
+.form-label, .form-check-label {
+    color: #aaa !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary) !important;
+}
+
 :focus {
     outline: none !important;
-    border : 1px solid var(--primary) !important;
+    border : 2px solid var(--primary) !important;
     box-shadow: 0 0 0 !important;
 }
 
 /* Login & Sign Up Style */
-/* .form-signin, .form-registration {
-    background-color: #15253f;
-    border-radius: 20pt;
-    box-shadow: 7px 7px 10px #aaa;
-}
-
-.form-signin input, .form-registration input, .form-rent input, .form-rent select {
-    border: none;
-    border-radius: 0 !important;
-    border-bottom: 1px solid #bd9060;
-    background-color: transparent;
-    color: #bd9060 !important;
-}
-
-.form-signin label, .form-registration label, .form-rent label {
-    color: #bd9060 !important;
-}
-
-.form-control:focus {
-    background-color: transparent !important;
-    border-color: #bd9060 !important;
-    box-shadow: 0 0 0 !important;
-    outline: none !important;
-}
 
 /* Rent Form style */
-/* .form-rent {
-    width: 80%; 
-    border-radius: 20pt;
-    background-color: #15253f !important;
-}
-
-.form-rent strong,  .create-rent-form h5 {
-    color: #bd9060;
-}  */
 
 /* Filter Style */
 

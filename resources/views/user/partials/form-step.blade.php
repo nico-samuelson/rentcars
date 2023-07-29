@@ -1,4 +1,8 @@
 <style>
+    .form-step-container {
+        margin-top: 4em !important;
+    }
+
     #form-step {
         overflow: hidden;
         margin: 0;
@@ -11,7 +15,7 @@
 
     #form-step li {
         list-style-type: none;
-        color: #000;
+        color: #aaa;
         font-size: 12px;
         font-weight: 600;
         text-align: center;
@@ -29,7 +33,7 @@
         display: block;
         font-weight: 600;
         color: #000;
-        background: #ddd;
+        background: #aaa;
         border-radius: 50%;
         margin: 0 auto 5px auto;
     }
@@ -38,7 +42,7 @@
     #form-step li:after {
         content: '';
         width: 70%;
-        border: 1px dashed #bbb;
+        border: 1px dashed #aaa;
         position: absolute;
         left: -35%;
         top: 15px;
@@ -58,7 +62,11 @@
 
     #form-step li.active:after {
         border: 1px dashed var(--primary);
-        color: #fff;
+        color: #aaa;
+    }
+
+    #form-step li.active {
+        color: var(--primary) !important;
     }
 
     @media screen and (max-width:576px) {
@@ -73,7 +81,7 @@
     }
 </style>
 
-<div class="col mt-5 bg-secondary tile py-3 form-step-container">
+<div class="col tile py-3 form-step-container">
     <ul id="form-step">
         <li class="{{ Request::is('rent/*') || Request::is('payment/create/*') ? 'active' : '' }}">Schedule</li>
         <li class="{{ !Request::is('rent/schedule') ? 'active' : ""}}">Choose Vehicle</li>

@@ -2,8 +2,8 @@
 
 @section('style')
     <style>
-        body {
-            background: url(/storage/website-assets/landing-bg.png) no-repeat;
+        .landing {
+            background: url("/website-assets/landing-bg.png") no-repeat;
             background-size: contain;
             background-position-x: 50%;
         }
@@ -232,7 +232,7 @@
                 <h5 class='mb-4 text-muted'>Rent any car with affordable prices anywhere in Indonesia</h5>
                 <a href="/rent" class="btn btn-primary mt-4 px-5 py-3">Get Started</a>
             </div>
-            <img src="/storage/website-assets/banner.webp" alt="Banner">
+            <img src="/website-assets/banner.webp" alt="Banner">
         </div>
     </header>
     
@@ -369,9 +369,9 @@
                             </figure>
                             <p class="text-light mt-1 mb-0">{{ $car->brand . ' ' . $car->model }}</p>
                             <span class="badge text-light fw-normal d-flex align-items-center justify-content-start">
-                                <img src="/storage/website-assets/person.png" alt="" height="25px">
+                                <img src="/website-assets/people.png" alt="" height="25px">
                                 <span class="ps-2 fs-6">{{ ' ' . $car->capacity}}</span>
-                                <img src="/storage/website-assets/Baggage.png" alt="" height="25px" class="ps-3">
+                                <img src="/website-assets/Baggage.png" alt="" height="25px" class="ps-3">
                                 <span class="ps-2 fs-6">{{ ' ' . $car->trunk }}</span>
                             </span>
                         </div>
@@ -381,10 +381,10 @@
 
             <div class="d-flex justify-content-center mt-md-3">
                 <button class="btn border-dark btn-circle me-4 fw-semibold prev">
-                    <img src="/storage/website-assets/prev.png" alt="Previous" height="23px" class="navigation-img">
+                    <img src="/website-assets/prev.png" alt="Previous" height="23px" class="navigation-img">
                 </button>
                 <button class="btn border-dark btn-circle me-4 fw-semibold next">
-                    <img src="/storage/website-assets/next.png" alt="Next" height="23px" class="navigation-img">
+                    <img src="/website-assets/next.png" alt="Next" height="23px" class="navigation-img">
                 </button>
             </div>
         </div>
@@ -394,16 +394,16 @@
             <h2 class='text-center my-md-5 my-3'>Special Offer</h2>
 
             <div class="col-md-6 px-4 py-4">
-                <img src="/storage/website-assets/offer-1.png" alt="Hyundai Palisade" class="w-100 img-fluid">
+                <img src="/website-assets/offer-1.png" alt="Hyundai Palisade" class="w-100 img-fluid">
             </div>
 
             <div class="col-md-6 px-4" data-aos="fade-left" data-aos-once='true' data-aos-duration="500" data-aos-anchor-placement='top-bottom'>
                 <h3 class="fw-bold text-uppercase">Porsche 911 Carrera</h3>
                 <h5 class="mb-3">Only for <span class='text-primary'>Rp 5 mio / day</span></h5>
 
-                <p><span><img src="/storage/website-assets/tick.png" alt="" width="20px"></span> 380 Horsepower</p>
-                <p><span><img src="/storage/website-assets/tick.png" alt="" width="20px"></span> 293 km/h top speed</p>
-                <p><span><img src="/storage/website-assets/tick.png" alt="" width="20px"></span> 0 - 100 in 4.2s</p>
+                <p><span><img src="/website-assets/tick.png" alt="" width="20px"></span> 380 Horsepower</p>
+                <p><span><img src="/website-assets/tick.png" alt="" width="20px"></span> 293 km/h top speed</p>
+                <p><span><img src="/website-assets/tick.png" alt="" width="20px"></span> 0 - 100 in 4.2s</p>
 
                 <a href=""><button class="btn btn-primary mt-4 px-5 py-2">Rent Now!</button></a>
             </div>
@@ -417,16 +417,16 @@
 
                 <div class="row mt-4 d-flex justify-content-md-start justify-content-center">
                     <div class="col-2 d-flex justify-content-center align-items-center">
-                        <a href="" class="btn btn-circle btn-dark d-flex align-items-center"><img src="/storage/website-assets/Whatsapp.png" alt="phone" width="20px"></a>
+                        <a href="" class="btn btn-circle btn-dark d-flex align-items-center"><img src="/website-assets/Whatsapp.png" alt="phone" width="20px"></a>
                     </div>
                     <div class="col-2 d-flex justify-content-center align-items-center">
-                        <a href="" class="btn btn-circle btn-dark d-flex align-items-center"><img src="/storage/website-assets/email.png" alt="email" width="20px"></a>
+                        <a href="" class="btn btn-circle btn-dark d-flex align-items-center"><img src="/website-assets/email.png" alt="email" width="20px"></a>
                     </div>
                     <div class="col-2 d-flex justify-content-center align-items-center">
-                        <a href="" class="btn btn-circle btn-dark d-flex align-items-center"><img src="/storage/website-assets/instagram.png" alt="Instagram" width="20px"></a>
+                        <a href="" class="btn btn-circle btn-dark d-flex align-items-center"><img src="/website-assets/instagram.png" alt="Instagram" width="20px"></a>
                     </div>
                     <div class="col-2 d-flex justify-content-center align-items-center">
-                        <a href="" class="btn btn-circle btn-dark d-flex align-items-center"><img src="/storage/website-assets/twitter.png" alt="Twitter" width="20px"></a>
+                        <a href="" class="btn btn-circle btn-dark d-flex align-items-center"><img src="/website-assets/twitter.png" alt="Twitter" width="20px"></a>
                     </div>
                 </div>
             </div>
@@ -493,29 +493,10 @@
                 </div>
 
                 <div class="col-md-8 d-flex flex-row justify-content-md-end justify-content-center align-items-center mt-3 mb-md-0 order-1 order-md-2">
-                    {{-- <div class="hstack gap-5"> --}}
                         <a class="nav-link {{ Request::is('/') ? 'active' : '' }} me-5" href="/">HOME</a>
                         <a class="nav-link {{ Request::is('about/*') ? 'active' : '' }} me-5" href="/about">ABOUT</a>
                         <a class="nav-link {{ Request::is('rent/*') ? 'active' : '' }}" href="/rent/schedule">RENT</a>
-                    {{-- </div> --}}
                 </div>
-
-        
-                {{-- <div class="col-md-8 py-md-5 py-3 order-md-2 order-1">
-                    <h5 class="fw-semibold mb-3">Find Us In</h5>
-                    <div class="row">
-                        <div class="col-6 d-flex flex-column">
-                            @for ($i = 0; $i < ceil($locations->count() / 2); $i++)
-                                <a href="https://www.google.com/maps" class="text-decoration-none fw-semibold mb-1">{{ $locations[$i]->location_name }}</a>
-                            @endfor
-                        </div>
-                        <div class="col-6 d-flex flex-column">
-                            @for ($i = ceil($locations->count() / 2); $i < $locations->count(); $i++)
-                                <a href="https://www.google.com/maps" class="text-decoration-none fw-semibold mb-1">{{ $locations[$i]->location_name }}</a>
-                            @endfor
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </footer>  
