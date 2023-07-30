@@ -4,6 +4,7 @@
     --secondary : #eee;
     --primary-300 : #d1d1e9;
     --body-bg: #000;
+    --bg-dark : #111;
 }
 
 a:focus, button:focus, input:checked {
@@ -18,7 +19,7 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     background-color: var(--body-bg) !important;
-    color: #fff;
+    color: #ddd;
 }
 
 a {
@@ -53,7 +54,7 @@ header, main, footer, article, section {
     border-radius: 20pt !important;
 }
 
-.bg-dark {background-color: #111 !important;}
+.bg-dark {background-color: var(--bg-dark) !important;}
 .bg-primary {background-color: var(--primary) !important;}
 .bg-secondary {background-color: var(--secondary) !important;}
 .bg-primary-300 {background-color: var(--primary-300) !important;}
@@ -74,7 +75,7 @@ header, main, footer, article, section {
 hr {border-top:1px solid #bbb !important}
 
 .tile {
-    background : #111;
+    background : var(--bg-dark);
     border-radius: 15pt !important;
 }
 
@@ -145,6 +146,16 @@ hr {border-top:1px solid #bbb !important}
     border-bottom: 1px solid #88888850 !important;
 }
 
+/* Dropdowns */
+.dropdown-menu {
+    background-color: var(--bg-dark) !important;
+    border: 1px solid #444 !important;
+}
+
+.dropdown-item:hover {
+    background-color: var(--bg-dark) !important;
+}
+
 /* General Forms */
 .form-control, .form-check-input, .form-select {
     background-color: transparent !important;
@@ -164,19 +175,14 @@ hr {border-top:1px solid #bbb !important}
     background-color: var(--primary) !important;
 }
 
-:focus {
+.form-control:focus {
     outline: none !important;
     border : 2px solid var(--primary) !important;
     box-shadow: 0 0 0 !important;
 }
 
-/* Login & Sign Up Style */
-
-/* Rent Form style */
 
 /* Filter Style */
-
-
 .offcanvas {
     --bs-offcanvas-width: min(100vw, 300px) !important;
 }

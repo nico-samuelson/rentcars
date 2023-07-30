@@ -135,9 +135,10 @@ class RentController extends Controller
     public function setVehicleModel(Request $request, $model)
     {
         $vehicle = $this->checkVehicle($request, $model);
+        // dd($vehicle);
 
         // Add vehicle data into session
-        if ($vehicle) {
+        if (count($vehicle)) {
             $rent_data = session()->get('rent_data');
             $rent_data['vehicle_model'] = $model;
             $rent_data['vehicle_transmission'] = $request->transmission;
@@ -233,7 +234,7 @@ class RentController extends Controller
             DB::beginTransaction();
             try {
                 // Insert Rent
-                Rent::insert($rent_data);
+                Rent::create($rent_data);
 
                 // Update vehicle status
                 $this->vehicle->where('id', $rent_data['vehicle_id'])->update(['is_available' => 0]);
@@ -242,13 +243,11 @@ class RentController extends Controller
                 DB::commit();
 
                 // Update session info
-                // session()->forget('rent_data');
+                session()->forget('rent_data');
                 session()->put('rent_number', $rent_data['rent_number']);
-
                 return redirect()->route('rent-payment', ['rent_number' => $rent_data['rent_number']]);
             } catch (Exception $e) {
                 // Rollback changes
-                dd($e);
                 DB::rollback();
 
                 // Delete uploaded files
@@ -269,7 +268,7 @@ class RentController extends Controller
     {
         $rent = Rent::firstWhere('user_id', auth()->user()->id)->where('id', $id)->get()->first();
 
-        if ($rent->count() > 0 && ($this->dateDiff($rent->start_date, now()) >= 1 || $rent->status_id == 1)) {
+        if ($rent->count() > 0 && ($this->dateDiff(strtotime($rent->start_date), strtotime(now())) >= 1 || $rent->status_id == 1)) {
             DB::beginTransaction();
             try {
                 // Update Rent Status
@@ -303,10 +302,7 @@ class RentController extends Controller
 
     function dateDiff($d1, $d2)
     {
-        // dd($d1 . ' ' . $d2);
         $delta = $d1 - $d2;
-        // dd($delta / 86400);
-        // dd(floor($delta / 86400));
         return floor($delta / 86400);
     }
 

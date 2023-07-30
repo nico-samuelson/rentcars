@@ -1,55 +1,63 @@
 @extends('user.layouts.main')
 
-<style>
-    .btn-check:checked {
-        background: var(--primary) !important;
-    }
-</style>
+@section('style')
+    <style>
+        .btn-check:checked {
+            background: var(--primary) !important;
+        }
+
+        .fixed-tile {
+            position: fixed;
+        }
+    </style>
+@endsection
 
 @section('container')
     <div class="container py-4">
         @include('user.partials.form-step')
             
-        <div class="row p-3">
-            {{-- Back button --}}
-            <div class="col-md-3 my-md-5 my-4 ps-0 d-flex align-items-start">
-                <a href='/rent/vehicles'><i class="fa-solid fa-arrow-left fa-2xl"></i></a>
-            </div>
-
-            <div class="col-md-6 my-4">
-                <form action="/rent/store" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    {{-- Summary --}}
-                    <h4 class="text-primary fw-semibold mb-3">Summary</h4>
-                    <div class="row tile border p-4 mb-5">
-                        <h5 class="fw-semibold mb-3">
+        <div class="row p-3 my-4">
+            {{-- Left Panel --}}
+            <div class="col-lg-5 pe-lg-5 pb-4 h-100" id="fixed-pos">
+                <div class="row p-lg-5 p-4 tile">
+                    <a href='/rent/vehicles'><i class="fa-solid fa-arrow-left fa-2xl"></i></a>
+                    <h4 class="text-primary mt-4">Summary</h4>
+                    <div class="col">
+                        <hr class="mb-4">
+                        <h5 class="mb-3">
                             {{ $car->vehicleModel->brand . ' ' . $car->vehicleModel->model . ' - ' . ucwords($car->transmission)}}
                         </h5>
 
-                        <hr>
                         
                         <p>
-                        <span class="fw-semibold">Rent Location</span>
+                            <span>Rent Location</span>
                             <br>
-                            {{ $location->location_name }}
+                            <span class="text-muted">{{ $location->location_name }}</span>
                         </p>
 
                         <p>
-                            <span class="fw-semibold">Pickup Date & Time</span>
+                            <span>Pickup Date & Time</span>
                             <br>
-                            {{ date_format(new Datetime(session()->get('rent_data')['start_date']), 'D, j M Y - H:i:s') }}
+                            <span class="text-muted">{{ date_format(new Datetime(session()->get('rent_data')['start_date']), 'D, j M Y - H:i:s') }}</span>
                         </p>
 
                         <p>
                             <span class="fw-semibold">Return Date & Time</span>
                             <br>
-                            {{ date_format(new Datetime(session()->get('rent_data')['end_date']), 'D, j M Y - H:i:s') }}
+                            <span class="text-muted">{{ date_format(new Datetime(session()->get('rent_data')['end_date']), 'D, j M Y - H:i:s') }}</span>
                         </p>
                     </div>
+                </div>
+            </div>
+
+            {{-- Right panel --}}
+            <div class="col-lg-7 p-5 tile">
+                <form action="/rent/store" method="POST" enctype="multipart/form-data">
+                    @csrf
 
                     {{-- Rent Detail --}}
-                    <h4 class="text-primary fw-semibold mb-3">Renter Detail</h4>
-                    <div class="row tile border p-4 mb-5">
+                    <h4 class="text-primary mb-3">Renter Detail</h4>
+                    <div class="row mb-4">
                         <div class="col-12 mb-3">
                             <label for="renter_name" class="form-label fw-semibold mb-2">Full Name</label>
                             <input type="text" class="form-control @error('renter_name') is-invalid @enderror" id="renter_name" name='renter_name' value="{{ old('renter_name') }}">
@@ -87,8 +95,8 @@
                     </div>
 
                     {{-- Driver Detail --}}
-                    <h4 class="text-primary fw-semibold mb-3">Driver Detail</h4>
-                    <div class="row tile border p-md-4 p-3 mb-5">
+                    <h4 class="text-primary mb-3">Driver Detail</h4>
+                    <div class="row mb-4">
                         <div class="col-12 mb-3">
                             <label for="driver_name" class="form-label fw-semibold mb-2">Full Name</label>
                             <input type="text" class="form-control @error('driver_name') is-invalid @enderror" id="driver_name" name='driver_name' value="{{ old('driver_name') }}">
@@ -150,8 +158,8 @@
 
                     </div>
 
-                    <h4 class="text-primary fw-semibold mb-3">Terms and Conditions</h4>
-                    <div class="row tile border p-md-4 p-3 mb-3">
+                    <h4 class="text-primary mb-3">Terms and Conditions</h4>
+                    <div class="row mb-4 px-3">
                         <div class="form-check mb-3">
                             <input class="form-check-input @error('tnc-agreement') is-invalid @enderror" type="checkbox" value="yes" id="agreement1" name="tnc-agreement">
                             <label class="form-check-label" for="agreement1">
@@ -178,13 +186,36 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <button class="btn btn-primary w-100 mt-4 py-2 fw-semibold">Rent Car</button>
+                    <div class="row px-3">
+                        <button class="btn btn-primary w-100 mt-4 py-2">Rent Car</button>
                     </div>
                 </form>
             </div>
         </div>
-
     </div>
+@endsection
 
+@section('script')
+    <script>
+        // sticky panel
+        let fixed = false;
+        const navbar = document.getElementById("navbar")
+        const step = document.getElementById('form-step')
+
+        $(window).scroll(function(e) {
+            if ((document.getElementById('fixed-pos').getBoundingClientRect().top - navbar.offsetHeight) <= 0 && !fixed && window.innerWidth > 992) {
+                fixed = true;
+                console.log('tes')
+                $("#fixed-pos").addClass('fixed-tile')
+                $("#fixed-pos").css("top", (navbar.offsetHeight + 10) + 'px')
+                $("#fixed-pos").css("width", ($("#fixed-pos").parent().width() * 5 / 12) + 'px')
+                $("#fixed-pos").after('<div class="col-lg-5"></div>')
+            }
+            else if ($(window).scrollTop() < (navbar.offsetHeight + step.offsetHeight + 10) && fixed){
+                fixed = false;
+                $("#fixed-pos").removeClass('fixed-tile')
+                $("#fixed-pos").next().remove()
+            }
+        })
+    </script>
 @endsection

@@ -3,11 +3,10 @@
 @section('container')
     <div class="container py-4">
         @include('user.partials.form-step')
-            {{-- @dd($rent) --}}
         <div class="row mx-0 py-3">
 
             <div class="col-md-6 my-md-4 ps-md-0">
-                <form action="/payment/store/{{ $rent->rent_number }}" method="POST" enctype="multipart/form-data" class="col p-5 tile border">
+                <form action="/payment/store/{{ $rent->rent_number }}" method="POST" enctype="multipart/form-data" class="col p-5 tile">
                     @csrf
                     <div class="row">
                         <h6 class="fw-semibold">Payment Detail</h6>
@@ -22,7 +21,7 @@
                             @enderror
                         </div>
                         <div class="col-md-4">
-                            <label for="expiration_month" class="form-label mb-2">Expiration Month</label>
+                            <label for="expiration_month" class="form-label mb-2">Exp. Month</label>
                             <input type="text" class="form-control @error('expiration_month') is-invalid @enderror" id="expiration_month" name='expiration_month' value="{{ old('expiration_month') }}">
 
                             @error('expiration_month')
@@ -32,7 +31,7 @@
                             @enderror
                         </div>
                         <div class="col-md-4">
-                            <label for="expiration_year" class="form-label mb-2">Expiration Year</label>
+                            <label for="expiration_year" class="form-label mb-2">Exp. Year</label>
                             <input type="text" class="form-control @error('expiration_year') is-invalid @enderror" id="expiration_year" name='expiration_year' value="{{ old('expiration_year') }}">
 
                             @error('expiration_year')
@@ -59,7 +58,7 @@
 
             <div class="col-md-6 my-md-4 pe-md-0">
                 {{-- Payment Summary --}}
-                <div class="col p-4 tile border">
+                <div class="col p-5 tile">
                     <h5 class="fw-semibold">
                         {{ $rent->vehicle->vehicleModel->brand . ' ' . $rent->vehicle->vehicleModel->model }}
                     </h5>
@@ -69,9 +68,8 @@
                     <div class="hstack mt-3">
                         <div class='w-50'>Daily Rate</div>
                         <div class="w-50 text-end fw-semibold">
-                            {{-- {{ dd(strtotime($rent->end_date) - strtotime($rent->start_date)) }} --}}
                             Rp {{ number_format($rent->total_price / 
-                                ((strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400), 0, ',', '.') }}
+                                (floor((strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400)), 0, ',', '.') }}
                         </div>
                     </div>
 
@@ -79,9 +77,9 @@
                         <div class='w-50'>Duration</div>
                         <div class="w-50 text-end fw-semibold">
                             {{ 
-                                (strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400 == 1 ?
-                                (strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400 . ' day' :
-                                (strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400 . ' days'
+                                floor((strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400) == 1 ?
+                                floor((strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400) . ' day' :
+                                floor((strtotime($rent->end_date) - strtotime($rent->start_date)) / 86400) . ' days'
                             }} 
                         </div>
                     </div>

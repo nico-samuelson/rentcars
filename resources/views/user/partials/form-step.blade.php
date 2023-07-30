@@ -81,7 +81,7 @@
     }
 </style>
 
-<div class="col tile py-3 form-step-container">
+<div class="col tile py-3 form-step-container" id="form-step">
     <ul id="form-step">
         <li class="{{ Request::is('rent/*') || Request::is('payment/create/*') ? 'active' : '' }}">Schedule</li>
         <li class="{{ !Request::is('rent/schedule') ? 'active' : ""}}">Choose Vehicle</li>

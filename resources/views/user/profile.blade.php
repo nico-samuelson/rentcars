@@ -1,41 +1,63 @@
 @extends('user.layouts.main')
 
-<style>
-    .header {
-        border-radius: 15pt !important;
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
-        height: 150px;
-    }
+@section('style')
+    <style>
+        .header {
+            border-radius: 15pt !important;
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            height: 150px;
+        }
 
-    .profile-picture {
-        display: block !important;
-        width: 100px !important;
-        aspect-ratio : 1/1 !important;
-        border-radius: 50%;
-        padding: 0 !important;
-        margin: 100px auto !important;
-    }
+        .profile-picture {
+            display: block !important;
+            width: 100px !important;
+            aspect-ratio : 1/1 !important;
+            border-radius: 50%;
+            padding: 0 !important;
+            margin: 100px auto !important;
+        }
 
-    .toast {
-        bottom: 20px;
-        z-index: 5001;
-    }
+        .toast {
+            bottom: 20px;
+            z-index: 5001;
+        }
 
-    #hidePass, #showPass {
-        right: 15px;
-        top: 35px;
-    }
+        #hidePass, #showPass {
+            right: 15px;
+            top: 35px;
+        }
 
-    #hidePass {
-        display: none;
-    }
-</style>
+        #hidePass {
+            display: none;
+        }
+
+        .form-control-plaintext {
+            color: #ddd;
+        }
+
+        .form-control-plaintext:focus {
+            border: none !important;
+        }
+
+        .modal-content {
+            background-color: #111 !important;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #888 !important;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #888 !important;
+        }
+    </style>
+@endsection
 
 @section('container')
     <div class="container py-4">
         <div class="row justify-content-center mt-md-0 mt-5 p-md-5 p-3">
-            <div class="col-md-6 tile border">
+            <div class="col-md-6 tile">
                 <div class="row header bg-primary-300 position-relative mb-5">
                     <img src="/storage/website-assets/default-profile.png" class="profile-picture" alt="Profile Picture">
                 </div>
@@ -108,7 +130,7 @@
     </div>
 
     {{-- Notif Toasts --}}
-    <div class="toast position-fixed text-bg-light bottom-25 start-50 translate-middle-x py-2" id='successUpdate' role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast position-fixed text-bg-dark bottom-25 start-50 translate-middle-x py-2" id='successUpdate' role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body text-center text-success fw-semibold">
             Your data has been updated successfully!
         </div>
@@ -169,7 +191,7 @@
                     @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="changePassModalLabel">Change Password</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white " data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                     <div class="modal-body p-3">
                             <div class="mb-3 position-relative">

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top" id="navbar">
     <div class="container">
         <a class="navbar-brand" href="/">Rentcars<span class='text-primary'>.id</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
                     <a class="nav-link dropdown-toggle {{ Request::is('user/*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-user"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                         <li><a class='dropdown-item mb-2 {{ Request::is('user/profile/*') ? 'active' : '' }}' href='{{ route('user.profile') }}'>Profile</a></li>
                         <li><a class="dropdown-item mb-2 {{ Request::is('user/booking/*') ? 'active' : '' }}" href="{{ route('user.bookings') }}">My Bookings</a></li>
                         <li>
@@ -42,7 +42,6 @@
                     </li>
                 @endauth
             </ul>
-
                 
             </ul>
         </div>

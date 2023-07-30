@@ -32,7 +32,7 @@ class Vehicle extends Model
         $vehicles = $this->where('model_id', $modelId[0]->id)
         ->where('transmission', $transmission)
         ->where('location_id', session()->get('rent_data')['location_id'])
-        ->where('is_available', true)
+        ->where('is_available', 1)
         ->whereNotExists(function($q) {
             $q->select('vehicle_id')
             ->from('rents')
@@ -48,7 +48,8 @@ class Vehicle extends Model
                     $q->where('rents.start_date', '<=', session()->get('rent_data')['start_date'])
                         ->where('rents.end_date', '>=', session()->get('rent_data')['end_date']);
                 });
-            });
+            })
+            ->whereNotIn('status_id', [5, 6, 7]);
         })
         ->get();
 
