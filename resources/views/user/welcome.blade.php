@@ -230,7 +230,7 @@
             <div class="col-12 mt-5 justfiy-content-center" data-aos="fade-right" data-aos-once='true' data-aos-duration="1000" data-aos-anchor-placement='top-center'>
                 <h1 class='mt-5 mb-4'>Drive Your Way</h1>
                 <h5 class='mb-4 text-muted'>Rent any car with affordable prices anywhere in Indonesia</h5>
-                <a href="/rent" class="btn btn-primary mt-4 px-5 py-3">Get Started</a>
+                <a href="{{ route('rent-schedule') }}" class="btn btn-primary mt-4 px-5 py-3">Get Started</a>
             </div>
             <img src="/website-assets/banner.webp" alt="Banner">
         </div>
@@ -247,7 +247,7 @@
                 <div class="p-5 tile mb-0 d-flex flex-column justify-content-between">
                     <div>
                         <h5 class="fw-bold mb-4 p-0">Affordable Price</h5>
-                        <p class="p-0">Always get the best price for your journey through our various offers and discounts</p>
+                        <p class="p-0">With over than 10 partners available, we always make sure to give you the best price for your journey</p>
                     </div>
 
                     <div class="row ps-2">
@@ -255,7 +255,7 @@
                             <img src="storage/website-assets/Price.png" alt="Price Tag" width="30px">
                         </div>
                         <div class="col-9 p-0 d-flex align-items-center justify-content-end">
-                            <a href="/rent" class="text-decoration-none">
+                            <a href="{{ route('rent-schedule') }}" class="text-decoration-none">
                                 <button class="rent-prompt">
                                     RENT NOW
                                     <div class="arrow-wrapper">
@@ -272,7 +272,7 @@
                 <div class="p-5 tile mb-0 d-flex flex-column justify-content-between">
                     <div>
                         <h5 class="fw-bold mb-4 p-0">We care about you</h5>
-                        <p class="p-0">Our customer support is always ready 24/7 to help you throughout your journey</p>
+                        <p class="p-0">Our customer support is always ready to help you throughout your journey</p>
                     </div>
 
                     <div class="row ps-2">
@@ -280,7 +280,7 @@
                             <img src="storage/website-assets/Support Service.png" alt="Top Quality Cars" width="30px">
                         </div>
                         <div class="col-9 p-0 d-flex align-items-center justify-content-end">
-                            <a href="/rent" class="text-decoration-none">
+                            <a href="{{ route('rent-schedule') }}" class="text-decoration-none">
                                 <button class="rent-prompt">
                                     RENT NOW
                                     <div class="arrow-wrapper">
@@ -293,12 +293,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 my-md-4 my-lg-0 my-0 px-4 why-us-card" data-aos="zoom-in" data-aos-once='true' data-aos-duration="750" data-aos-anchor-placement='center-bottom'>
+            <div class="col-lg-4 col-md-6 mb-4 px-4 why-us-card" data-aos="zoom-in" data-aos-once='true' data-aos-duration="750" data-aos-anchor-placement='center-bottom'>
                 <div class="p-5 tile mb-0 d-flex flex-column justify-content-between">
                     <div>
                         <h5 class="fw-bold mb-4 p-0">Quality Vehicles</h5>
                         <p class="p-0">
-                            With the help of our quality assurance team, we make sure our car is in great condition for you to use
+                            With the help of our quality assurance team, we make sure every vehicle is ready for you to use
                         </p>
                     </div>
 
@@ -307,7 +307,7 @@
                             <img src="storage/website-assets/Support Service.png" alt="Top Quality Cars" width="30px">
                         </div>
                         <div class="col-9 p-0 d-flex align-items-center justify-content-end">
-                            <a href="/rent" class="text-decoration-none">
+                            <a href="{{ route('rent-schedule') }}" class="text-decoration-none">
                                 <button class="rent-prompt">
                                     RENT NOW
                                     <div class="arrow-wrapper">
@@ -405,7 +405,7 @@
                 <p><span><img src="/website-assets/tick.png" alt="" width="20px"></span> 293 km/h top speed</p>
                 <p><span><img src="/website-assets/tick.png" alt="" width="20px"></span> 0 - 100 in 4.2s</p>
 
-                <a href=""><button class="btn btn-primary mt-4 px-5 py-2">Rent Now!</button></a>
+                <a href="{{ route('rent-schedule') }}"><button class="btn btn-primary mt-4 px-5 py-2">Rent Now!</button></a>
             </div>
         </div>
 

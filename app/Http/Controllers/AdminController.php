@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Staff;
-use App\Http\Requests\StoreStaffRequest;
-use App\Http\Requests\UpdateStaffRequest;
+use App\Models\Admin;
+use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
 
-class StaffController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class StaffController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreStaffRequest  $request
+     * @param  \App\Http\Requests\StoreAdminRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStaffRequest $request)
+    public function store(StoreAdminRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class StaffController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Staff  $staff
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Staff $staff)
+    public function show(Admin $admin)
     {
         //
     }
@@ -53,10 +53,10 @@ class StaffController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Staff  $staff
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Staff $staff)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -64,11 +64,11 @@ class StaffController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateStaffRequest  $request
-     * @param  \App\Models\Staff  $staff
+     * @param  \App\Http\Requests\UpdateAdminRequest  $request
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateStaffRequest $request, Staff $staff)
+    public function update(UpdateAdminRequest $request, Admin $admin)
     {
         //
     }
@@ -76,10 +76,10 @@ class StaffController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Staff  $staff
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Staff $staff)
+    public function destroy(Admin $admin)
     {
         //
     }

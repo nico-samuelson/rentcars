@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Location;
+use App\Models\Vendor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -38,12 +39,12 @@ class VehicleFactory extends Factory
         $locations = Location::get()->count();
 
         return [
+            'vendor_id' => mt_rand(1, Vendor::all()->count()),
             'license_plate' => fake()->randomLetter() . " " . fake()->randomNumber(4, true) . " " . fake()->randomLetter() . 
                                 fake()->randomLetter(),
             'brand' => $brand,
             'model' => $model,
             'year' => $year,
-            'color' => fake()->colorName(),
             'capacity' => fake()->numberBetween(5, 7),
             'transmission' => array_rand(array('manual' => 1, 'matic' => 2)),
             'daily_rate' => 0,

@@ -2,18 +2,17 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\User;
-use App\Models\Staff;
+use App\Models\Admin;
+use App\Models\Vendor;
 use App\Models\Location;
-use App\Models\Department;
 use App\Models\RentStatus;
 use App\Models\PaymentMethod;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RentSeeder;
 use Database\Seeders\VehicleSeeder;
 use Database\Seeders\VehicleModelSeeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,19 +25,14 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(100)->create();
 
+        
         $statuses = array('Unpaid', 'Paid', 'Approved', 'On Progress', 'Rejected', 'Cancelled', 'Refunded', 'Completed');
         $cities = array('Surabaya', 'Jakarta', 'Malang', 'Semarang', 'Yogyakarta', 'Bandung', 'Medan', 'Pekanbaru', 'Palembang', 'Padang', 'Lombok', 'Bali');
-        $departments = array("Board of Director", "Board of Comissioner", "Shareholder", "Operations", "Finance", "IT", "HRD", "Research & Development");
         $paymethods = array('Bank Transfer', 'OVO', 'Gopay', 'DANA', 'LinkAja', 'ShopeePay', 'XL', 'Telkom', 'Indosat');
-
-        foreach($departments as $department)
-            Department::create(['name' => $department]);
 
         foreach($cities as $city) {
             Location::create([
                 'location_name' => $city,
-                'address' => 'Jl. Imam Bonjol 123',
-                'phone_number' => '0812345678',
             ]);
         }
 
@@ -48,11 +42,26 @@ class DatabaseSeeder extends Seeder
         foreach($statuses as $status)
             RentStatus::create(['status' => $status]);
 
-        Staff::factory(300)->create();
+        Vendor::factory(10)->create();
+        $vendors = Vendor::get();
+
+        for($i=0; $i<100; $i++) {
+            Admin::create([
+                'name' => fake()->name(),
+                'username' => fake()->unique()->userName(),
+                'vendor_id' => mt_rand(1, $vendors->count()),
+                'email' => fake()->safeEmail(),
+                'phone' => fake()->phoneNumber(),
+                'email_verified_at' => now(),
+                'password' => bcrypt('123456789'),
+                'remember_token' => Str::random(10),
+            ]);
+        }
+        // Admin::factory(100)->create();
 
         $this->call([
             VehicleModelSeeder::class,
-            VehicleSeeder::class,
+            // VehicleSeeder::class,
             RentSeeder::class,
         ]);
     }

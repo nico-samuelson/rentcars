@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('vehicle_type');
             $table->integer('capacity');
             $table->integer('trunk');
-            $table->integer('HP');
-            $table->integer('torque');
-            $table->integer('top_speed');
-            $table->double('acceleration');
-            $table->integer('daily_rate');
+            $table->integer('HP')->nullable();
+            $table->integer('torque')->nullable();
+            $table->integer('top_speed')->nullable();
+            $table->double('acceleration')->nullable();
+            // $table->integer('daily_rate');
             $table->string('vehicle_image');
             $table->timestamps();
             $table->softDeletes();

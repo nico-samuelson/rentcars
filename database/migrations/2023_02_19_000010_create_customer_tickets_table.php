@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,16 +13,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-{
-        Schema::create('vehicles', function (Blueprint $table) {
+    {
+        Schema::create('customer_tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('license_plate');
-            $table->string('model_id');
-            $table->integer('year');
-            $table->string('color')->nullable();
-            $table->string('transmission');
-            $table->foreignId('location_id');
-            $table->boolean('is_available');
+            $table->foreignIdFor(User::class)->nullable()->constrained();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->text('message');
+            $table->boolean('resolved');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicles');
+        Schema::dropIfExists('customer_tickets');
     }
 };

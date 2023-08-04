@@ -2,8 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Vendor;
+use App\Models\Vehicle;
+use App\Models\Location;
 use App\Models\VehicleModel;
 use Illuminate\Database\Seeder;
+use App\Models\VendorVehicleRate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class VehicleModelSeeder extends Seeder
@@ -426,9 +430,34 @@ class VehicleModelSeeder extends Seeder
             ),
         );
 
+        $vendors = Vendor::get();
+
         foreach ($models as $model) {
+            $daily_rate = $model['daily_rate'];
+            unset($model['daily_rate']);
             $model['vehicle_image'] = '/vehicle-image/' . $model['model'] . '.png';
-            VehicleModel::create($model);
+
+            $inserted = VehicleModel::create($model);
+
+            for ($i=0;$i < mt_rand(1, 10);$i++) {
+                Vehicle::create([
+                    'vendor_id' => mt_rand(1, Vendor::count()),
+                    'vehicle_model_id' => $inserted->id,
+                    'location_id' => mt_rand(1, Location::count()),
+                    'license_plate' => strtoupper(fake()->randomLetter()) . " " . fake()->randomNumber(4, true) . " " . strtoupper(fake()->randomLetter()) . strtoupper(fake()->randomLetter()),
+                    'year' => fake()->numberBetween(2010, 2023),
+                    'transmission' => array_rand(array('Manual' => 1, 'Matic' => 2)),
+                    'is_available' => true,
+                ]);
+            }
+
+            foreach ($vendors as $vendor) {
+                VendorVehicleRate::create([
+                    'vehicle_model_id' => $inserted->id,
+                    'vendor_id' => $vendor->id,
+                    'daily_rate' => mt_rand($daily_rate * 0.9 , $daily_rate * 1.1),
+                ]);
+            }
         }
     }
 }

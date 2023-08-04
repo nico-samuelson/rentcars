@@ -2,7 +2,8 @@
 
 <style>
     .payment-info {
-        background-color: #eee;
+        /* background-color: #eee; */
+        border: 2px solid #888 !important;
         border-radius: 10pt !important;
     }
 
@@ -13,12 +14,20 @@
     table td {
         padding: 15px 7px !important;
     }
+
+    /* thead tr th {
+        color: #ddd !important;
+    }
+
+    tbody tr td {
+        color: #888 !important;
+    } */
 </style>
 
 @section('container')
-    <div class="container py-4">
+    <div class="container p-4">
         <div class="row mt-5 justify-content-center">
-            <div class="col-md-8 px-5 py-4 tile border">
+            <div class="col-md-8 p-5 tile">
                 <div class="row">
                     <div class="hstack gap-3">
                         <div>
@@ -69,13 +78,13 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th style="width:40%">Item</th>
-                                    <th>Daily Rate</th>
-                                    <th>Qty</th>
-                                    <th>Total</th>
+                                    <th style="width:40%" class="text-light">Item</th>
+                                    <th class="text-light">Daily Rate</th>
+                                    <th class="text-light">Dur</th>
+                                    <th class="text-light">Total</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-secondary">
                                 <tr>
                                     <td style="width:40%">
                                         {{ $payment->rent->vehicle->vehicleModel->brand . ' ' . $payment->rent->vehicle->vehicleModel->model }}
@@ -84,7 +93,10 @@
                                         Rp {{ number_format($payment->rent->vehicle->vehicleModel->daily_rate, 0, ',', '.') }}
                                     </td>
                                     <td>
-                                        {{ date_diff(new Datetime($payment->rent->end_date), new Datetime($payment->rent->start_date))->d + 1 . ' day (s)' }}
+                                        {{-- {{ dd($payment->rent) }} --}}
+                                        {{ floor((strtotime($payment->rent->end_date) - strtotime($payment->rent->start_date)) / 86400) == 1 ?
+                                            floor((strtotime($payment->rent->end_date) - strtotime($payment->rent->start_date)) / 86400) . ' day' :
+                                            floor((strtotime($payment->rent->end_date) - strtotime($payment->rent->start_date)) / 86400) . ' days' }}
                                     </td>
                                     <td>
                                         Rp {{ 
@@ -105,7 +117,7 @@
                                             , 0, ',', '.') }}
                                     </td>
                                 </tr>
-                                <tr class="payment-info">
+                                <tr class="text-light">
                                     <td colspan='3' class="fw-semibold">Total Price</td>
                                     <td class="fw-semibold fs-5">Rp {{ number_format($payment->rent->total_price, 0, ',', '.') }}</td>
                                 </tr>

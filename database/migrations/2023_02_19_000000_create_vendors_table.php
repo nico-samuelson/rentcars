@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customer_tickets', function (Blueprint $table) {
+        Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email');
-            $table->text('message');
-            $table->foreignId('admin_id');
-            $table->boolean('resolved');
+            $table->string('vendor_name');
+            $table->string('vendor_email');
+            $table->string('vendor_phone');
+            $table->string('vendor_logo');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_tickets');
+        Schema::dropIfExists('vendors');
     }
 };
