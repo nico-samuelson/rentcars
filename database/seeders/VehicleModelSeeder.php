@@ -439,7 +439,7 @@ class VehicleModelSeeder extends Seeder
 
             $inserted = VehicleModel::create($model);
 
-            for ($i=0;$i < mt_rand(1, 10);$i++) {
+            for ($i=0;$i < mt_rand(1, 50);$i++) {
                 Vehicle::create([
                     'vendor_id' => mt_rand(1, Vendor::count()),
                     'vehicle_model_id' => $inserted->id,

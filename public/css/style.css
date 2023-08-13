@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 :root {
     --primary : #6246ea;
-    /* --secondary : #eee; */
     --primary-300 : #d1d1e9;
     --body-bg: #000;
     --bg-dark : #111;
@@ -34,7 +33,6 @@ a:hover {
 header, main, footer, article, section {
     background-color: var(--body-bg) !important;
 }
-/* a:focus {color: var(--primary) !important; background-color: transparent !important;} */
 
 .text-light {color: var(--light) !important;}
 .text-primary {color: var(--primary) !important;}
@@ -50,6 +48,11 @@ header, main, footer, article, section {
     background-color: var(--secondary) !important;
     border: none !important;
     color: #000;
+}
+.btn-dark {
+    background-color: var(--bg-dark) !important;
+    border: none !important;
+    color: var(--light) !important;
 }
 
 .btn {
@@ -266,27 +269,13 @@ hr {border-top:1px solid #bbb !important}
 }
 
 /* Filter Style */
-.offcanvas {
-    --bs-offcanvas-width: min(100vw, 300px) !important;
+.text-bg-dark {
+    background-color: var(--bg-dark) !important;
+    color: var(--light) !important;
 }
 
-.offcanvas-body::-webkit-scrollbar {    
-    display: none !important;
-}
-
-@media screen and (max-width:992px) {
-    .offcanvas {
-        --bs-offcanvas-width: 100vw !important;
-        /* height : 100%; */
-        left: 0 !important;
-        right: 0 !important;
-        top: auto !important;
-        transition: all .3s ease-in-out !important;
-    }
-    .offcanvas.offcanvas-start {
-        height: 75%;
-        transform: translateY(0%) !important;
-    }
+.offcanvas.offcanvas-bottom {
+    height: 70vh !important;
 }
 
 @media screen and (max-width:768px) {
@@ -299,3 +288,7 @@ hr {border-top:1px solid #bbb !important}
     }
 }
 
+/* Placeholder */
+::placeholder {
+    color: var(--secondary) !important;
+}

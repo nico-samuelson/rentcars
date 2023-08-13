@@ -38,7 +38,7 @@ Route::prefix('rent')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/schedule', [RentController::class, 'chooseSchedule'])->name('rent-schedule');
     Route::post('/set-schedule', [RentController::class, 'setSchedule'])->name('set-schedule');
     Route::get('/vehicles', [RentController::class, 'chooseVehicle'])->name('rent-vehicle');
-    Route::get('/vehicles/{model}', [RentController::class, 'viewVehicle']);
+    Route::get('/vehicles/{model}/{transmission}', [RentController::class, 'viewVehicle']);
     Route::post('/set-vehicle/{model}', [RentController::class, 'setVehicleModel']);
     Route::get('/check-vehicle/{model}', [RentController::class, 'checkVehicle']);
     Route::get('/filterVehicle', [RentController::class, 'filterVehicle']);
@@ -103,3 +103,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/monthly_revenue', [DashboardController::class, 'getMonthlyRevenue']);
     Route::get('/monthly_rents', [DashboardController::class, 'getMonthlyRent']);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

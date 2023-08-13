@@ -235,6 +235,8 @@
             <img src="/website-assets/banner.webp" alt="Banner">
         </div>
     </header>
+
+    {{-- <div id="example"></div> --}}
     
     <main class="container">
         {{-- Why Us Section --}}
@@ -521,5 +523,12 @@
         <?php session()->forget('ticket-submission-success') ?>
     @endif
 
+    
+@endsection
+
+@section('script')
+    @viteReactRefresh
+    @vite('resources/js/components/Example.jsx')
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script src='js/home.js'></script>
 @endsection

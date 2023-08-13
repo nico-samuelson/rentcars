@@ -14,66 +14,83 @@ class Vehicle extends Model
 
     protected $guarded = ['id'];
 
-    public function location() {
+    public function location()
+    {
         return $this->belongsTo(Location::class, 'location_id');
     }
 
-    public function vehicleModel() {
+    public function vehicleModel()
+    {
         return $this->belongsto(VehicleModel::class, 'model_id');
     }
 
-    public function getRouteKeyName() {
+    public function getRouteKeyName()
+    {
         return 'model';
     }
 
-    public function getAvailableVehicles($model, $transmission) {
+    public function getAvailableVehicles($model, $transmission)
+    {
         $modelId = VehicleModel::select('id')->where('model', $model)->get();
 
         $vehicles = $this->where('model_id', $modelId[0]->id)
-        ->where('transmission', $transmission)
-        ->where('location_id', session()->get('rent_data')['location_id'])
-        ->where('is_available', 1)
-        ->whereNotExists(function($q) {
-            $q->select('vehicle_id')
-            ->from('rents')
-            ->whereColumn('rents.vehicle_id', 'vehicles.id')
-            ->where(function($q) {
-                $q->whereBetween('rents.start_date', [session()->get('rent_data')['start_date'], session()->get('rent_data')['end_date']])
-                
-                ->orWhere(function($q){
-                    $q->whereBetween('rents.end_date', [session()->get('rent_data')['start_date'], session()->get('rent_data')['end_date']]);
-                })
+            ->where('transmission', $transmission)
+            ->where('location_id', session()->get('rent_data')['location_id'])
+            ->where('is_available', 1)
+            ->whereNotExists(function ($q) {
+                $q->select('vehicle_id')
+                    ->from('rents')
+                    ->whereColumn('rents.vehicle_id', 'vehicles.id')
+                    ->where(function ($q) {
+                        $q->whereBetween('rents.start_date', [session()->get('rent_data')['start_date'], session()->get('rent_data')['end_date']])
 
-                ->orWhere(function($q){ 
-                    $q->where('rents.start_date', '<=', session()->get('rent_data')['start_date'])
-                        ->where('rents.end_date', '>=', session()->get('rent_data')['end_date']);
-                });
+                            ->orWhere(function ($q) {
+                                $q->whereBetween('rents.end_date', [session()->get('rent_data')['start_date'], session()->get('rent_data')['end_date']]);
+                            })
+
+                            ->orWhere(function ($q) {
+                                $q->where('rents.start_date', '<=', session()->get('rent_data')['start_date'])
+                                    ->where('rents.end_date', '>=', session()->get('rent_data')['end_date']);
+                            });
+                    })
+                    ->whereNotIn('status_id', [5, 6, 7]);
             })
-            ->whereNotIn('status_id', [5, 6, 7]);
-        })
-        ->get();
+            ->get();
 
         return $vehicles;
     }
 
-    public function availableVehicle($employee) {
+    public function getAllVendors($model = '')
+    {
+        $q = $this->select('vendor_name', 'vendors.id')->distinct()->join('vendors', 'vehicles.vendor_id', '=', 'vendors.id')->where('location_id', session()->get('rent_data')['location']['id']);
+
+        if ($model != '')
+            $q = $q->where('model_id', $model);
+
+        // dd($q->get());
+        return $q->get();
+    }
+
+    public function availableVehicle($employee)
+    {
         if ($employee->access_lvl >= 1 && $employee->access_lvl <= 5) {
             $result = array();
             $vehicles = $this->where('is_available', true);
-    
+
             if ($employee->access_lvl < 5)
                 $vehicles = $vehicles->where('location_id', $employee->location_id);
-    
+
             $result[] = $vehicles->count();
             $result[] = $this->all()->count();
-            
+
             return $result;
         }
 
         return array(0, 0);
     }
 
-    public function getSelectedVehicleInfo($modelId) {
+    public function getSelectedVehicleInfo($modelId)
+    {
         return $this->where('model_id', $modelId)->where('transmission', session()->get('rent_data')['vehicle_transmission'])->first();
     }
 }

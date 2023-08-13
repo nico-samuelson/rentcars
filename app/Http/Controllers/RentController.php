@@ -7,7 +7,6 @@ use App\Models\Rent;
 use App\Models\Vehicle;
 use App\Models\VehicleModel;
 use App\Models\Location;
-use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +23,6 @@ class RentController extends Controller
     {
         $this->vehicle = new Vehicle();
         $this->vehicleModel = new VehicleModel();
-        $this->staff = new Staff();
     }
 
     public function vehicle()
@@ -68,7 +66,7 @@ class RentController extends Controller
 
         // Add rent schedule and location into session
         $rent_data = (session()->has('rent_data')) ? session()->get('rent_data') : array();
-        $rent_data['location_id'] = $request->location;
+        $rent_data['location'] = Location::firstWhere('id', $request->location)->toArray();
         $rent_data['start_date'] = $request->start_date;
         $rent_data['end_date'] = $request->end_date;
         session()->put('rent_data', $rent_data);
@@ -79,7 +77,7 @@ class RentController extends Controller
     public function chooseVehicle()
     {
         $filter = [
-            'location_id' => session()->get('rent_data')['location_id'],
+            'location_id' => session()->get('rent_data')['location']['id'],
             'sort' => 'pmin',
         ];
 
@@ -87,24 +85,26 @@ class RentController extends Controller
             'title' => 'Pick a vehicle',
             'cars' => $this->vehicleModel->fetch_cars($filter),
             'brands' => $this->vehicleModel->fetch_brands(),
-            'popular' => $this->vehicleModel->most_popular_model($filter),
+            'locations' => Location::all(),
+            'vendors' => $this->vehicle->getAllVendors(),
         ]);
     }
 
     public function filterVehicle(Request $request)
     {
         $filter = $request->filters;
-        $filter['location_id'] = session()->get('rent_data')['location_id'];
+        $filter['location_id'] = session()->get('rent_data')['location']['id'];
 
         return $this->vehicleModel->fetch_cars($filter);
     }
 
-    public function viewVehicle($model)
+    public function viewVehicle($model, $transmission)
     {
         return view('user.rent.vehicle', [
             'title' => 'Rent ' . $model,
             'car' => $this->vehicleModel->firstWhere('model', $model),
-            'transmissions' => $this->vehicleModel->getTransmissions($model),
+            'transmission' => $transmission,
+            // 'transmissions' => $this->vehicleModel->getTransmissions($model),
         ]);
     }
 
@@ -155,7 +155,7 @@ class RentController extends Controller
         return view('user.rent.form', [
             'title' => 'Fill Contact Detail',
             'car' => $this->vehicle->getSelectedVehicleInfo($modelId->id),
-            'location' => Location::firstWhere('id', session()->get('rent_data')['location_id']),
+            'location' => Location::firstWhere('id', session()->get('rent_data')['location']['id']),
         ]);
     }
 
@@ -169,7 +169,7 @@ class RentController extends Controller
         // $this->store($request);
         return view('user.rent.create', [
             'title' => 'Sewa Mobil',
-            'location' => Location::where('id', $request->session()->get('location_id'))->get()->toArray()
+            'location' => Location::where('id', $request->session()->get('rent_data')['location']['id'])->get()->toArray()
         ]);
     }
 

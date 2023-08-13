@@ -24,7 +24,7 @@
                 <form action="{{ route('set-schedule') }}" method="post" class="p-5 tile">
                     @csrf
                     <label for="location" class="form-label fw-semibold">Location</label>
-                    <select class="form-select mb-4 @error('location') is-invalid @enderror" aria-label="Default select example" id='location' name="location" value="{{ session()->get('rent_data')['location'] ?? old('location') }}">
+                    <select class="form-select mb-4 @error('location') is-invalid @enderror" aria-label="Default select example" id='location' name="location" value="{{ session()->get('rent_data')['location']['id'] ?? old('location') }}">
                         @foreach($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->location_name }}</option>
                         @endforeach
@@ -38,7 +38,7 @@
 
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
-                            <label for="start_date" class="form-label fw-semibold">Pick Up</label>
+                            <label for="start_date" class="form-label fw-semibold">Start</label>
                             <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name='start_date' value="{{ session()->get('rent_data')['start_date'] ?? date('Y/m/d', strtotime('tomorrow')) }}">
 
                             @error('start_date')
@@ -48,7 +48,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label for="end_date" class="form-label fw-semibold">Return</label>
+                            <label for="end_date" class="form-label fw-semibold">End</label>
                             <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name='end_date' value="{{ session()->get('rent_data')['end_date'] ?? old('end_date') ?? date('Y/m/d', strtotime('+4 day')) }}">
 
                             @error('end_date')
